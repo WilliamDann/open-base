@@ -1,0 +1,30 @@
+.pgnEditor
+{
+    height: 100%;
+}
+
+.editor
+{
+    height: 100%;
+    width: 100%;
+    white-space: pre;
+    word-break: break-all;
+}
+
+.ply
+{
+    border: 1px solid grey;
+    width: 40%;
+    padding: 10px;
+    display: inline-block;
+}
+
+.ply:hover
+{
+    background-color: rgba(127, 255, 212, 0.2);
+}
+
+.move
+{
+    width: 100%;
+}
