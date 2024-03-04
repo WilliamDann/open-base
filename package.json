@@ -1,0 +1,23 @@
+{
+  "name": "open-base",
+  "version": "1.0.0",
+  "description": "Open Source Chess Editing Tool",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Chess"
+  ],
+  "author": "William Dann",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^29.1.0"
+  },
+  "dependencies": {
+    "chess.js": "^1.0.0-beta.8",
+    "ejs": "^3.1.9",
+    "ejs-electron": "^3.0.0"
+  }
+}

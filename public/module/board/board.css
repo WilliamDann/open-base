@@ -1,0 +1,21 @@
+.file
+{
+    display: inline-block;
+}
+
+.square
+{
+    width  : 64px;
+    height : 64px;
+}
+
+.light
+{
+    background-color: #d4d4d4;
+}
+
+.dark
+{
+    background-color: #052e16;
+
+}

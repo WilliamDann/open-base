@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Open Base</title>
+        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="../module/board/board.css">
+
+        <script src="../module/board/board.js"></script>
+
+    </head>
+
+    <body>
+        <%- include('header.ejs') -%>
+
+        <main>
+            <div class="row">
+                <div class="col">
+                    <%- include('../module/board/board.ejs') -%>
+                </div>
+                <div class="col">
+                    Col B
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
