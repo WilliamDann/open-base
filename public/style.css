@@ -13,13 +13,13 @@
 
 body
 {
-    background-color: #0c0a09;
+    background-color: rgba(12, 10, 9, 0.8);
 }
 
 .header
 {
     padding: 10px;
-    background: #171717;
+    background: rgba(23, 23, 23, 0.8);
     -webkit-app-region: drag;   
 }
 
