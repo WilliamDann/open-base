@@ -1,5 +1,17 @@
+<div class="gameInfo">
+    <p class="gameTitle">Game Title</p>
+    <br>
+    <p class="players">White - Black</p>
+    <p class="location">Location, Year</p>
+    <p class="ecoCode">A0 Eco Code</p>
+    <br>
+</div>
 <div class="board"></div>
-<script>
+
+<script type="module">
+    import Board from '../module/board/board.js';
+
     let b = new Board();
     b.draw(document.querySelector('.board'));
+    b.drawPieces("r2q1rk1/pp3pbp/2npb1p1/2pB4/4P2P/2P1BP2/PP2N1P1/R2QK2R b KQ - 2 12");
 </script>

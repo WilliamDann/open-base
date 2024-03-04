@@ -9,6 +9,11 @@
     height : 64px;
 }
 
+.piece
+{
+    float: left;
+}
+
 .light
 {
     background-color: #d4d4d4;
@@ -18,4 +23,25 @@
 {
     background-color: #052e16;
 
+}
+
+.gameInfo
+{
+    width: 512px;
+}
+
+.gameTitle
+{
+    font-style: italic;
+    font-size: 25px;
+}
+
+.players
+{
+    font-weight: bold;
+}
+
+.ecoCode
+{
+    font-style: italic;
 }

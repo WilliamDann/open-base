@@ -19,8 +19,8 @@ body
 .header
 {
     padding: 10px;
-    background: #292524;
-    -webkit-app-region: drag;
+    background: #171717;
+    -webkit-app-region: drag;   
 }
 
 .row {
