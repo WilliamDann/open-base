@@ -10,28 +10,16 @@
 
 <script type="module">
     import Board     from '../module/board/board.js';
-    import { Chess } from '../../node_modules/chess.js/dist/esm/chess.js'
-
-    let g = new Chess();
-    g.loadPgn(`
-        1. e4 e5 {king's pawn opening} 2. Nf3 Nc6 3. Bc4 Bc5 {giuoco piano} *
-    `)
-    window.game = g;
     
-    let b = new Board(document.querySelector('.board'));
-    b.clear();
-    b.draw();
-    b.setFEN(g.fen());
-    window.board = b;
-
-    window.addEventListener('move', function(e) {
-        console.log(e.detail);
-        g.move(e.detail);
+    // board in window
+    const b = new Board(document.querySelector('.board'));
+    
+    // board update event
+    function boardupdate()
+    {
         b.clear();
         b.draw();
-        b.setFEN(g.fen());
-
-        let ev = new CustomEvent('pgn', { detail: g.pgn() });
-        window.dispatchEvent(ev);
-    })
+        b.setFEN(window.chess.fen());
+    }
+    window.addEventListener('boardupdate', boardupdate);
 </script>

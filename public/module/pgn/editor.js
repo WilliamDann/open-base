@@ -33,7 +33,7 @@ export default class Editor
 
     draw()
     {
-        let moves = window.game.history();
+        let moves = window.chess.history();
         for (let i = 0; i < moves.length; i+=2)
             this.elem.appendChild(this.drawMove(moves[i], moves[i+1]));
     }

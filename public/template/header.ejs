@@ -1,3 +1,18 @@
 <div class="header">
     <img src="../img/wR.svg" width="25px">
 </div>
+
+<!-- Global JS Values -->
+<script type="module">
+    import { Chess } from '../../node_modules/chess.js/dist/esm/chess.js'
+
+    window.chess = new Chess();
+    window.chess.loadPgn(`
+        1. e4 e5 {king's pawn opening} 2. Nf3 Nc6 3. Bc4 Bc5 {giuoco piano} *
+    `);
+
+    // update content when ready
+    window.addEventListener('DOMContentLoaded', () => 
+        window.dispatchEvent(new Event('boardupdate'))
+    );
+</script>

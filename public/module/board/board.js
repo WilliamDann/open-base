@@ -7,7 +7,7 @@ import { Chess } from '../../../node_modules/chess.js/dist/esm/chess.js'
 function onSquareDown(e)
 {
     e.preventDefault();
-    window.click = e.target.parentElement.id;
+    window.boardclick = e.target.parentElement.id;
 }
 
 /**
@@ -24,10 +24,9 @@ function onSquareUp(e)
     else
         to = e.target.id;
 
-    let move = `${window.click}${to}`;
-    
-    const event = new CustomEvent('move', { detail: move });
-    window.dispatchEvent(event);
+    // make move and update state
+    window.chess.move(`${window.boardclick}${to}`); // TODO sound on fail
+    window.dispatchEvent(new Event('boardupdate'));
 }
 
 export default class Board

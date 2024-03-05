@@ -9,9 +9,8 @@
     import Editor from '../module/pgn/editor.js'
 
     let ed = new Editor(document.querySelector('.editor'));
-    ed.draw();
 
-    window.addEventListener('pgn', function(e) {
+    window.addEventListener('boardupdate', function(e) {
         ed.clear();
         ed.draw();
     });
