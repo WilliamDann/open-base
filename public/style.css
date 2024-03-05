@@ -35,9 +35,9 @@ body
 .cmdbar
 {
     position: absolute;
-    bottom: 40px;
-    left: 40%;
-    width: 400px;
+    bottom: 5px;
+    left: 10%;
+    width: 80%;
     text-align: center;
 
     border: 1px solid grey;
@@ -54,4 +54,5 @@ body
     height: 100%;
     font-family: monospace;
     font-size: 15px;
+    white-space: pre;
 }

@@ -1,0 +1,34 @@
+<script type="module">
+    import { commands } from '../module/cmdbar/cmdbar.js'
+
+    const cmdbar = document.querySelector('.cmdbar_type');
+
+    // add shortcut command
+    document.addEventListener('keydown', e => {
+        if (e.ctrlKey && e.code === 'Space')
+        {
+            e.preventDefault();
+            cmdbar.focus()
+        }
+
+        if (e.code === 'Enter')
+        {
+            e.preventDefault();
+            commands[cmdbar.innerHTML].func();
+            cmdbar.nodeValue = "";
+            cmdbar.focus()
+        }
+    });
+
+    cmdbar.addEventListener('focus', e => {
+        cmdbar.innerHTML = "";
+    });
+
+    cmdbar.addEventListener('focusout', e => {
+        cmdbar.innerHTML = "🔍 Command Bar"
+    });
+</script>
+
+<div class="cmdbar">
+    <p class="cmdbar_type" id="cmdbar_type" contenteditable="true">🔍 Command Bar</p>
+</div>
