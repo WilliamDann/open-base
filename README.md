@@ -1,4 +1,4 @@
-# Open Base
+# ♜ Open Base
 
 ![screenshot of Open Base](files/Capture.JPG "Open Base")
 
