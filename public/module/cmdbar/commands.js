@@ -26,4 +26,11 @@ export let commands =
             window.dispatchEvent(new Event('boardupdate'))
         }
     ),
+
+    'Exit': new Command(
+        'Exit the program',
+        () => {
+            close();
+        }
+    )
 }
