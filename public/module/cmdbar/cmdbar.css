@@ -1,0 +1,14 @@
+.suggestion
+{
+    text-align: center;
+}
+
+.suggestion .cmdname
+{
+    display: inline;
+    padding-right: 20px;
+}
+.suggestion .cmddesc
+{
+    display: inline;
+}

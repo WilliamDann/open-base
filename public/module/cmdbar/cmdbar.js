@@ -1,29 +1,95 @@
-import { Chess } from '../../../node_modules/chess.js/dist/esm/chess.js'
+import { commands } from '../cmdbar/commands.js'
 
-class Command
+const cmdbar      = document.querySelector('.cmdbar_type');
+let   suggestions = {};
+
+// reset the suggestions variable for new input
+function resetSuggestions()
 {
-    constructor(desc, func)
+    suggestions = {};
+    for (let cmd in commands)
     {
-        this.desc = desc;
-        this.func = func;
+        suggestions[cmd] = true;
     }
 }
 
-export let commands = 
+function updateSuggestions()
 {
-    'Reset'  : new Command(
-        'Reset the board position',
-        () => {
-            if (confirm("Reset the board position?"))
-                window.chess = new Chess();
-                window.dispatchEvent(new Event('boardupdate'))
-        }
-    ),
+    if (cmdbar.innerHTML.length === 0)
+        return;
 
-    'Refresh': new Command(
-        'Emit a boardupdate event',
-        () => {
-            window.dispatchEvent(new Event('boardupdate'))
-        }
-    ),
+    let index = cmdbar.innerHTML.length-1;
+    let key   = cmdbar.innerHTML[index];
+
+    for (let suggestion in suggestions)
+        suggestions[suggestion] = suggestion[index] == key;
 }
+
+function showSuggestions()
+{
+    let baseElem = document.querySelector('.suggestion');
+    let box      = document.querySelector('.suggestBox');
+
+    for (let suggestion in suggestions)
+    {
+        if (!suggestions[suggestion])
+            continue;
+        
+        let newElem = baseElem.cloneNode(true);
+        newElem.querySelector('.cmdname').innerHTML = suggestion;
+        newElem.querySelector('.cmddesc').innerHTML = commands[suggestion].desc;
+        newElem.style.display = 'block';
+        box.appendChild(newElem);
+    }
+}
+
+function clearSuggestions()
+{
+    let box      = document.querySelector('.suggestBox');
+    let baseElem = document.querySelector('.suggestion');
+
+    box.innerHTML = "";
+
+    baseElem.style.display = 'none';
+    box.appendChild(baseElem);
+}
+
+// add shortcut command
+document.addEventListener('keydown', e => {
+    if (e.ctrlKey && e.code === 'Space')
+    {
+        e.preventDefault();
+        cmdbar.focus()
+    }
+
+    else if (e.code === 'Enter')
+    {
+        e.preventDefault();
+        commands[cmdbar.innerHTML].func();
+        cmdbar.nodeValue = "";
+    }
+
+    else if (e.code == 'Tab')
+    {
+
+    }
+
+    else if (!e.ctrlKey && !e.shiftKey && !e.altKey)
+    {
+        clearSuggestions();
+        updateSuggestions();
+        showSuggestions();
+    }
+
+});
+
+cmdbar.addEventListener('focus', e => {
+    cmdbar.innerHTML = "";
+    
+    resetSuggestions();
+});
+
+cmdbar.addEventListener('focusout', e => {
+    cmdbar.innerHTML = "🔍 Command Bar";
+    clearSuggestions();
+});
