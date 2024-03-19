@@ -1,14 +1,14 @@
 .pgnEditor
 {
     height: 100%;
+    text-wrap: wrap;
 }
 
 .editor
 {
     height: 100%;
     width: 100%;
-    white-space: pre;
-    word-break: break-all;
+    white-space: pre-wrap;
 }
 
 .ply
@@ -27,4 +27,24 @@
 .move
 {
     width: 100%;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+  
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

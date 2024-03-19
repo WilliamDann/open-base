@@ -8,8 +8,21 @@
 
     window.chess = new Chess();
     window.chess.loadPgn(`
-        1. e4 e5 {king's pawn opening} 2. Nf3 Nc6 3. Bc4 Bc5 {giuoco piano} *
-    `);
+[Event "Idris 1. e4: 1... e5, Bishop's Opening, 3... Nc6 4... Bc5"]
+[Site "https://lichess.org/study/TDKcbkyx/zv0pNtb0"]
+[Result "*"]
+[Variant "Standard"]
+[ECO "C24"]
+[Opening "Bishop's Opening: Vienna Hybrid"]
+[Annotator "https://lichess.org/@/takes_takes_takes"]
+[UTCDate "2024.02.29"]
+[UTCTime "19:38:07"]
+
+1. e4 e5 2. Bc4 { This is the Bishop's Opening. The bishop's opening is a relatively ignored system that allows whites to get a stable and consistent attacking setup while cutting out black's main annoying options.
+
+The Bishop's Opening is seen rarely at many levels of the game. In master games, 92% of the games after 1. e4 e5 are followed by 2. Nf3, where 2. Bc4 is the next most popular option with 3% of master games after 1. e4 e5. This does not mean that the opening is somehow flawed, though! Look at the impressive names in the opening explorer (the book icon on the right). Magnus Carlsen, Alexander Grishuk, Fabiano Caruana, Alireza Firouzja, and Vesilin Topalov to name a few. In further support of the Bishop's Opening's validity, it has a higher win rate in master chess than 2. Nf3! 2. Nf3 scores a 30% win rate where 2. Bc4 scores 35%.
+This opening is also great for expanding Idris's repertoire in the future to thing like an Italian, Vienna, and other similar looking openings. } 2... Nf6 { This attacks out e4 pawn and develops a piece. } 3. d3 { Defends the pawn by creating a strong central pawn chain. Now e4 and d3 are safe from capture. This also allows our c1 bishop into the game. } { [%csl Bc2,Bd3,Be4][%cal Bc2e4] } 3... Nc6 4. Nc3 Bc5 5. f4! { Gives us a strong attacking setup, and is the goal for our Bishop's Opening. We put pressure on the black's central position right away. } { [%csl Re5][%cal Rf4e5] } 5... d6 { [%csl Bc7,Bd6,Be5][%cal Bc7e5] } (5... O-O!? 6. Nf3 Ng4 7. Qe2 Nf2 8. Rf1 Ng4 9. h3 Nf6 (9... Nd4 { Is the only move, but very hard to find. } 10. Nxd4 exd4 11. Na4 Bb4+ 12. c3 dxc3 13. bxc3 Ba5 14. hxg4 $16 { And white wins a piece. }) 10. fxe5 $18 { We bag a central pawn and will castle queenside. Black has nothing to claim for the pawn. }) 6. Nf3 { Keeping up the pressure } { [%csl Re5][%cal Rf4e5,Rf3e5] } 6... O-O 7. f5! { Establishing a pawn wedge, starting an attack in the kingside. } 7... h6 { Black more or less had to prevent the pin on g5. } (7... Bd7 8. Bg5! { A very annoying pin. } 8... h6 9. Bh4 { Black's army is all tied up already. } 9... a5 10. Nd5 $16 { It's hard for black to even move without losing material! }) 8. Nd5 Nd4 (8... Bd7 9. Nxf6+ Qxf6 10. g4 Rfe8 11. g5 Qe7 (11... hxg5?? 12. Bxg5! { The queen is trapped! }) 12. gxh6 gxh6 13. Bxh6 $18 { The attack is very strong! }) 9. Nxf6+ Qxf6 10. Nxd4 Bxd4 11. c3 Bb6 12. Qh5! c6 13. g4 $16 { White has a very powerful attack! } *
+`);
 
     // update content when ready
     window.addEventListener('DOMContentLoaded', () => 
