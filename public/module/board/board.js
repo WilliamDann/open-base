@@ -8,6 +8,13 @@ function onSquareDown(e)
 {
     e.preventDefault();
     window.boardclick = e.target.parentElement.id;
+
+    let hover = document.querySelector('.pieceGrab')
+    if (e.target.src)
+    {
+        hover.src = e.target.src;
+        hover.style.display = 'block';
+    }
 }
 
 /**
@@ -23,6 +30,10 @@ function onSquareUp(e)
         to = e.target.parentElement.id;
     else
         to = e.target.id;
+
+    let hover = document.querySelector('.pieceGrab')
+    hover.src = '';
+    hover.style.display = 'none';
 
     // make move and update state
     window.chess.move(`${window.boardclick}${to}`); // TODO sound on fail

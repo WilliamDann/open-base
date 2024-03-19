@@ -8,6 +8,9 @@
 </div>
 <div class="board"></div>
 
+<!-- for hovering pieces when grabbed -->
+<img src="" class="pieceGrab" width="64" height="64">
+
 <script type="module">
     import Board     from '../module/board/board.js';
     
@@ -23,4 +26,10 @@
         b.setFEN(window.chess.fen());
     }
     window.addEventListener('boardupdate', boardupdate);
+    document.querySelector('main').onmousemove = e =>
+    {
+        let hover = document.querySelector('.pieceGrab')    
+        hover.style.left = e.clientX + 2 +   'px';
+        hover.style.top  = e.clientY + 2 +   'px';
+    };
 </script>
