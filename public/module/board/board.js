@@ -42,6 +42,7 @@ export default class Board
         this.board = board;
         this.x = x;
         this.y = y;
+        this.flipped = false;
     }
 
     /**
@@ -122,12 +123,15 @@ export default class Board
             this.board.appendChild(this.drawFile(String.fromCharCode(97+i), white));
             white = !white;
         }
+
+        if (this.flipped)
+            this.flipBoard();
     }
 
     /**
-     * Flips the board position
+     * spins the board around after it's drawn
      */
-    flip()
+    flipBoard()
     {
         let files = [];
 
@@ -150,6 +154,14 @@ export default class Board
         
         while (files.length > 0)
             this.board.appendChild(files.pop());
-        
+    }
+
+    /**
+     * Sets the board to flipped position
+     */
+    flip()
+    {
+        this.flipBoard();
+        this.flipped = !this.flipped;
     }
 }
