@@ -39,5 +39,28 @@ export let commands =
         () => {
             window.board.flip();
         }
+    ),
+
+    'Undo': new Command(
+        'Undo the last move',
+        () =>
+        {
+            if (!window.redo)
+                window.redo = [];
+            window.redo.push(window.chess.undo());
+
+            window.dispatchEvent(new Event('boardupdate'));
+        }
+    ),
+
+    'Redo': new Command(
+        'Undo the last undo',
+        () =>
+        {
+            if (!window.redo || window.redo.length == 0)
+                return;
+            window.chess.move(window.redo.pop());
+            window.dispatchEvent(new Event('boardupdate'));
+        }
     )
 }

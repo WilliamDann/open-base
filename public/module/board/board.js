@@ -38,6 +38,8 @@ function onSquareUp(e)
     // make move and update state
     window.chess.move(`${window.boardclick}${to}`); // TODO sound on fail
     window.dispatchEvent(new Event('boardupdate'));
+
+    window.redo = [];
 }
 
 export default class Board
