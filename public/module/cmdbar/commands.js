@@ -32,5 +32,12 @@ export let commands =
         () => {
             close();
         }
+    ),
+
+    'Flip': new Command(
+        'Flips the board',
+        () => {
+            window.board.flip();
+        }
     )
 }

@@ -117,11 +117,39 @@ export default class Board
     draw()
     {
         let white = true;
-
         for (let i = 0; i < this.x; i++)
         {
             this.board.appendChild(this.drawFile(String.fromCharCode(97+i), white));
             white = !white;
         }
+    }
+
+    /**
+     * Flips the board position
+     */
+    flip()
+    {
+        let files = [];
+
+        const flipFile = file => {
+            let squares = [];
+            
+            for (let square of file.childNodes)
+                squares.push(square);
+            file.innerHTML = "";
+
+            while (squares.length > 0)
+                file.appendChild(squares.pop());
+
+            return file;
+        }
+
+        for (let file of this.board.childNodes)
+            files.push(flipFile(file));
+        this.board.innerHTML = '';
+        
+        while (files.length > 0)
+            this.board.appendChild(files.pop());
+        
     }
 }
