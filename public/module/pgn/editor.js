@@ -1,5 +1,3 @@
-import { Chess } from '../../../node_modules/chess.js/dist/esm/chess.js'
-
 export default class Editor
 {
     /**
@@ -11,47 +9,25 @@ export default class Editor
         this.elem = elem;
     }
 
-    drawPly(moveText)
+    formatTags(base)
     {
-        if (!moveText)
-            moveText = "__";
-
-        let ply = document.createElement('div');
-        ply.className = 'ply';
-        ply.appendChild(document.createTextNode(moveText));
-        return ply;
+        const re = /\[(.*?)\]/gm
+        return base.replaceAll(re, '<span class="tagText">$&</span>');
     }
 
-    drawMove(number, whiteMove, blackMove)
+    formatMoves(base)
     {
-        let moveContainer = document.createElement('div');
-        moveContainer.className = 'move';
-        moveContainer.id        = `move_${number}`
-
-        moveContainer.appendChild(this.drawPly(whiteMove));
-        moveContainer.appendChild(this.drawPly(blackMove));
-        
-        return moveContainer;
-    }
-
-    drawComments()
-    {
-        for (let comment of window.chess.getComments())
-        {
-            let move = new Chess(comment.fen).moveNumber();
-            let elem = document.querySelector(`#move_${move}`)
-            elem.appendChild(document.createElement('br'));
-            elem.appendChild(document.createTextNode(comment.comment.replace('\n', '<br>')));
-        }
+        const re = /((\d{1,}\.\s?)?(([Oo0](-[Oo0]){1,2}|[KQRBN]?[a-h]?[1-8]?x?[a-h][1-8](\=[QRBN])?[+#]?(\s(1-0|0-1|1\/2-1\/2))?)\s?){1,2})+(?![^{]*})/g
+        return base.replaceAll(re, '<span class="moveText">$&</span>')
     }
 
     draw()
     {
-        let moves = window.chess.history();
-        let move  = 1;
-        for (let i = 0; i < moves.length; i+=2, move++)
-            this.elem.appendChild(this.drawMove(move, moves[i], moves[i+1]));
-        this.drawComments();
+        let base = window.chess.pgn();
+        base     = this.formatTags(base);
+        base     = this.formatMoves(base);
+        
+        this.elem.innerHTML = base;
     }
 
     clear()
