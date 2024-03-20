@@ -62,7 +62,7 @@ document.addEventListener('keydown', e => {
         cmdbar.focus()
     }
 
-    else if (e.code === 'Enter')
+    else if (e.code === 'Enter' && document.activeElement == cmdbar)
     {
         commands[cmdbar.innerHTML].func();
         cmdbar.nodeValue = "";

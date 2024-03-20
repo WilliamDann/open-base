@@ -14,7 +14,7 @@
 body
 {
     background-color: rgba(12, 10, 9, 0.8);
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 .scroll

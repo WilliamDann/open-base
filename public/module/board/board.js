@@ -36,9 +36,15 @@ function onSquareUp(e)
     hover.style.display = 'none';
 
     // make move and update state
-    window.chess.move(`${window.boardclick}${to}`); // TODO sound on fail
-    window.dispatchEvent(new Event('boardupdate'));
+    if (window.position.addMove(`${window.boardclick}${to}`))
+    {
+        // advance to the new move
+        window.position = window.position.children[0];
 
+        // fire update event
+        window.dispatchEvent(new Event('boardupdate'));
+    }
+    
     window.redo = [];
 }
 
@@ -60,7 +66,6 @@ export default class Board
 
     /**
      * Clear the board container
-     * @param {HTMLElement} elem board container
      */
     clear()
     {

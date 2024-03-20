@@ -1,4 +1,4 @@
-import { Chess } from '../../../node_modules/chess.js/dist/esm/chess.js'
+import MoveTreeNode from '../chess/MoveTree.js';
 
 class Command
 {
@@ -15,7 +15,14 @@ export let commands =
         'Reset the board position',
         () => {
             if (confirm("Reset the board position?"))
-                window.chess = new Chess();
+                window.moveTree = new MoveTreeNode(
+                    null,
+                    'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                    null,
+                    []
+                );
+                window.position = window.moveTree;
+
                 window.dispatchEvent(new Event('boardupdate'))
         }
     ),

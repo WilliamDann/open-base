@@ -12,7 +12,7 @@
 <img src="" class="pieceGrab" width="64" height="64">
 
 <script type="module">
-    import Board     from '../module/board/board.js';
+    import Board        from '../module/board/board.js';
     
     // board in window
     const b = new Board(document.querySelector('.board'));
@@ -23,15 +23,15 @@
     {
         b.clear();
         b.draw();
-        b.setFEN(window.chess.fen());
+        b.setFEN(window.position.fen);
 
-        let headers = window.chess.header();
-
-        document.querySelector('.gameTitle').innerHTML = headers.Event || 'Game Title';
-        document.querySelector('.players').innerHTML   = (headers.White || 'White') + ' - ' + (headers.Black || 'Black');
-        document.querySelector('.location').innerHTML  = headers.Location || 'Location';
-        document.querySelector('.ecoCode').innerHTML   = headers.ECO || 'A00';
-        
+        // TODO reinclude
+        // let headers = window.moveTree.header();
+        // 
+        // document.querySelector('.gameTitle').innerHTML = headers.Event || 'Game Title';
+        // document.querySelector('.players').innerHTML   = (headers.White || 'White') + ' - ' + (headers.Black || 'Black');
+        // document.querySelector('.location').innerHTML  = headers.Location || 'Location';
+        // document.querySelector('.ecoCode').innerHTML   = headers.ECO || 'A00';
     }
     window.addEventListener('boardupdate', boardupdate);
     document.querySelector('main').onmousemove = e =>

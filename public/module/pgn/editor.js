@@ -23,7 +23,7 @@ export default class Editor
 
     draw()
     {
-        let base = window.chess.pgn();
+        let base = window.position.getGame().pgn();
         base     = this.formatTags(base);
         base     = this.formatMoves(base);
         

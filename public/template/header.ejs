@@ -5,23 +5,19 @@
 <!-- Global JS Values -->
 <script type="module">
     import { Chess } from '../../node_modules/chess.js/dist/esm/chess.js'
+    import MoveTreeNode from '../module/chess/MoveTree.js';
 
-    window.chess = new Chess();
-    window.chess.loadPgn(`
-[Event "Scandi Basics: Scandi Basics"]
-[Site "https://lichess.org/study/ehBFQwP1/g470nR8B"]
-[Result "*"]
-[Variant "Standard"]
-[ECO "B01"]
-[Opening "Scandinavian Defense: Main Line, Mieses Variation"]
-[Annotator "https://lichess.org/@/takes_takes_takes"]
-[UTCDate "2024.02.08"]
-[UTCTime "06:40:56"]
+    // the tree containing variations for the current game
+    window.moveTree = new MoveTreeNode(
+        null,
+        'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+        null,
+        []
+    );
 
-1. e4 d5 { Arguably the most aggressive response to 1. e4, challenging the white center on move one. } 2. exd5 Qxd5 3. Nc3 Qa5 { The downside being, that we have to lose some time with our queen as a result. } 4. d4 Nf6 5. Nf3 c6 { It is important to remember to play this move for a few reasons.
-1) It increases black's control over the central light squares, which is one of the ideas outlined in the introduction.
-2) If a white bishop were to come do d2 (which it very often does) it allows the queen a square to run to (d8) if it ever needs to. } { [%csl Gd8][%cal Ga5d8] } 6. Bc4 Bf5! { It is important to remember to get this bishop out before blocking it with ...e6 } (6... e6? { This bishop is trapped and very sad about it! } { [%csl Rc8][%cal Rc8d7] }) 7. Bd2 e6 { Again increasing out central light square control and letting the dark square bishop out. It will be heading to b4 next move. } 8. Qe2 Bb4! { Taking away discoveries and allowing us to castle kingside or queenside. Black wants to take the knight on c3 when the time is right, as black trades a dark square bishop (which does not influence the light squares at all) for a knight (which currently attacks two of those central squares). This increases black's control over the light squares in the center, despite giving white a bishop pair. } 9. O-O-O Nbd7! { Finishing development and preparing to capture a Ne5 should it decide to head there. } 10. a3 Bxc3 11. Bxc3 Qc7 { Supporting e5 further. Qd8 would stop black from casting and Qb6 would block the black pawns. This is the best square for the queen. } 12. Ne5 { White wants their octopus knight! } 12... Nxe5 13. dxe5 Nd5 { We have worked hard to dominate the light squares, and are rewarded with a beautiful knight on the d5 square well supported by the black position. } { [%csl Rf4,Re3,Rc3,Rb4,Rf6,Rb6,Re7,Rc7][%cal Rd5f4,Rd5e3,Rd5c3,Rd5b4,Rd5f6,Rd5b6,Rd5e7,Rd5c7] } 14. Bd2 { White wants to keep their advantage of the bishop pair. The dark square bishop's job is to patrol the dark squares, and the light square bishop will control the light squares. If one gets traded, then that set of squares is without a piece to guard them. This is why to two bishops will stay together on the board if they can. } 14... O-O-O! { The opening is over, but black has two very nice pieces and a very safe position. If you get this position, the opening is a success! The Illustrative Games will show more about playing the resulting positions, but one can only cover so much in a single lesson. } (14... O-O? 15. g4! Bg6 16. h4! { This is a mistake because it allows white a huge space advantage in front of the black king. This is very risky for black as the pawns can open up the black pawn shield and cause the black king serious trouble! } { [%csl Gg1][%cal Gd1g1,Gh4h6,Gg4g6] }) *
-`);
+    // the node currently on the board
+    window.position = window.moveTree;
+
 
     // update content when ready
     window.addEventListener('DOMContentLoaded', () => 
