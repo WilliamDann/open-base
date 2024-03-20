@@ -9,24 +9,20 @@
     height: 100%;
     width: 100%;
     white-space: pre-wrap;
-}
-
-.ply
-{
-    border: 1px solid grey;
-    width: 40%;
     padding: 10px;
-    display: inline-block;
+    padding-bottom: 150px;
 }
 
-.ply:hover
+.tagText
 {
-    background-color: rgba(127, 255, 212, 0.2);
+    color: #166534;
 }
 
-.move
+.moveText
 {
-    width: 100%;
+    color: #166534;
+    display: block;
+    font-weight: bold;
 }
 
 /* width */

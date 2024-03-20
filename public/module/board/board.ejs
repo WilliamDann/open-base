@@ -3,7 +3,7 @@
     <br>
     <p class="players">White - Black</p>
     <p class="location">Location, Year</p>
-    <p class="ecoCode">A0 Eco Code</p>
+    <p class="ecoCode">A00</p>
     <br>
 </div>
 <div class="board"></div>
@@ -24,6 +24,14 @@
         b.clear();
         b.draw();
         b.setFEN(window.chess.fen());
+
+        let headers = window.chess.header();
+
+        document.querySelector('.gameTitle').innerHTML = headers.Event || 'Game Title';
+        document.querySelector('.players').innerHTML   = (headers.White || 'White') + ' - ' + (headers.Black || 'Black');
+        document.querySelector('.location').innerHTML  = headers.Location || 'Location';
+        document.querySelector('.ecoCode').innerHTML   = headers.ECO || 'A00';
+        
     }
     window.addEventListener('boardupdate', boardupdate);
     document.querySelector('main').onmousemove = e =>

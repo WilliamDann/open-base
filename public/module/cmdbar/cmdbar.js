@@ -64,7 +64,6 @@ document.addEventListener('keydown', e => {
 
     else if (e.code === 'Enter')
     {
-        e.preventDefault();
         commands[cmdbar.innerHTML].func();
         cmdbar.nodeValue = "";
     }

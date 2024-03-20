@@ -2,9 +2,7 @@
 <br><br>
 
 <div class="pgnEditor">
-    <div class="editor"></div>
-    <br>
-    <br>
+    <p class="editor" contenteditable></p>
     <br>
     <br>
     <br>
@@ -13,7 +11,15 @@
 <script type="module">
     import Editor from '../module/pgn/editor.js'
 
-    let ed = new Editor(document.querySelector('.editor'));
+    let elem = document.querySelector('.editor')
+    let ed = new Editor(elem);
+
+    // save edits when focus is out
+    elem.addEventListener('focusout', e =>
+    {
+        window.chess.loadPgn(elem.textContent);
+        window.dispatchEvent(new Event('boardupdate'))
+    });
 
     window.addEventListener('boardupdate', function(e) {
         ed.clear();
