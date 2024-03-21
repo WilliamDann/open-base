@@ -1,4 +1,4 @@
-import MoveTreeNode from '../chess/MoveTree.js';
+import MoveTreeNode from './MoveTree.js';
 
 class Command
 {

@@ -1,11 +1,11 @@
 <div class="header">
-    <img src="../img/wR.svg" width="25px">
+    <img src="img/wR.svg" width="25px">
 </div>
 
 <!-- Global JS Values -->
 <script type="module">
-    import { Chess } from '../../node_modules/chess.js/dist/esm/chess.js'
-    import MoveTreeNode from '../module/chess/MoveTree.js';
+    import { Chess }    from '../node_modules/chess.js/dist/esm/chess.js'
+    import MoveTreeNode from './src/MoveTree.js';
 
     // the tree containing variations for the current game
     window.moveTree = new MoveTreeNode(

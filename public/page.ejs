@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Open Base</title>
+        <link rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="styles/board.css">
+        <link rel="stylesheet" href="styles/pgn.css">
+        <link rel="stylesheet" href="styles/cmdbar.css">
+    </head>
+
+    <body>
+        <%- include('header.ejs') -%>
+
+        <main>
+            <div class="row">
+                <div class="col">
+                    <%- include('pages/board.ejs') -%>
+                </div>
+                <div class="col scroll">
+                    <%- include('pages/pgn.ejs') -%>
+                </div>
+            </div>
+        </main>
+
+        <%- include('pages/cmdbar.ejs') -%>
+    </body>
+</html>

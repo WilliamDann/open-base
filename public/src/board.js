@@ -1,4 +1,4 @@
-import { Chess } from '../../../node_modules/chess.js/dist/esm/chess.js'
+import { Chess } from '../../node_modules/chess.js/dist/esm/chess.js'
 
 /**
  * Called when a square has a mouse down event
@@ -83,7 +83,7 @@ export default class Board
         {   
             let elem = document.createElement('img');
             elem.className = 'piece';
-            elem.src = `../img/alpha/${piece.color}${piece.type.charAt(0).toUpperCase()}.svg` // TODO themes
+            elem.src = `./img/alpha/${piece.color}${piece.type.charAt(0).toUpperCase()}.svg` // TODO themes
             elem.width = "64";
             elem.height = "64";
 

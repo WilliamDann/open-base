@@ -13,7 +13,7 @@ const createWindow = () => {
     },
   })
 
-  win.loadFile('public/template/page.ejs');
+  win.loadFile('public/page.ejs');
   ejse.listen();
 }
 

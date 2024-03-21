@@ -1,4 +1,4 @@
-import { commands } from '../cmdbar/commands.js'
+import { commands } from './commands.js'
 
 const cmdbar      = document.querySelector('.cmdbar_type');
 let   suggestions = {};
