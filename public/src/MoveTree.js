@@ -73,7 +73,6 @@ export default class MoveTreeNode
     }
 
     /**
-     * 
      * @param {MoveTreeNode} node 
      * @param {Array<MoveTreeNode} carry
      */
@@ -101,6 +100,12 @@ export default class MoveTreeNode
     {
         let head  = this.getHead();
         return this.pgnStep(head, head.children) + '*';
+    }
+
+    // returns the game pgn 
+    toString()
+    {
+        return this.pgn();
     }
 }
 
