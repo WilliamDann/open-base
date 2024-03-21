@@ -18,6 +18,20 @@
     const b = new Board(document.querySelector('.board'));
     window.board = b;
     
+    document.querySelector('body').addEventListener('keyup', e => {
+        if (e.code == 'ArrowRight' && window.position.children.length != 0)
+        {
+            window.position = window.position.children[0];
+            window.dispatchEvent(new Event('boardupdate'));
+        }
+
+        if (e.code == 'ArrowLeft' && window.position.parent != null)
+        {
+            window.position = window.position.parent;
+            window.dispatchEvent(new Event('boardupdate'));
+        }
+    });
+
     // board update event
     function boardupdate()
     {

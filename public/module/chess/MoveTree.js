@@ -38,12 +38,18 @@ export default class MoveTreeNode
         let nodes = [];
         let node  = this;
 
+        // seek to last node of line
+        while(node.children.length > 0)
+            node = node.children[0];
+
+        // reverse order
         while(node.parent != null)
         {
             nodes.push(node);
             node = node.parent;
         }
 
+        // create Chess object
         let chess = new Chess(node.fen);
         while (nodes.length > 0)
         {
