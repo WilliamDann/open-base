@@ -4,10 +4,10 @@ export default class MoveTreeNode
 {
     /**
      * A single node in a move tree
-     * @param {Node}        parent the parent node to this node
+     * @param {MoveTreeNode}        parent the parent node to this node
      * @param {string}      fen the current fen string of the position
      * @param {string}      move string version of the current chess move
-     * @param {Array<Node>} children variations after this move
+     * @param {Array<MoveTreeNode>} children variations after this move
      */
     constructor(parent, fen, move, children)
     {
@@ -22,44 +22,23 @@ export default class MoveTreeNode
     }
 
     /**
+     * @returns the head element of the move tree
+     */
+    getHead()
+    {
+        let node = this;
+        while (node.parent != null)
+           node = node.parent;
+        return node; 
+    }
+
+    /**
      * @returns The chess.js object for the given position & move
      */
     getBoard()
     {
         let b = new Chess(this.fen);
         return b;
-    }
-
-    /**
-     * @returns the chess.js object for the entire game up to this node
-     */
-    getGame()
-    {
-        let nodes = [];
-        let node  = this;
-
-        // seek to last node of line
-        while(node.children.length > 0)
-            node = node.children[0];
-
-        // reverse order
-        while(node.parent != null)
-        {
-            nodes.push(node);
-            node = node.parent;
-        }
-
-        // create Chess object
-        let chess = new Chess(node.fen);
-        while (nodes.length > 0)
-        {
-            let node = nodes.pop();
-            chess.move(node.move);
-            if (node.comment)
-                chess.setComment(node.comment);
-        }
-
-        return chess;
     }
 
     /**
@@ -71,11 +50,15 @@ export default class MoveTreeNode
     {
         let n = new MoveTreeNode(this, null, move, []);
         let b = this.getBoard();
+        let sanMove;
 
         // try and make the move
         try
         {
-            b.move(move);
+            let moveNum = b.moveNumber();
+            let dot     = b.turn() == 'w' ? '.' : '...';
+
+            sanMove     = `${moveNum}${dot} ${b.move(move).san}`;
         }
         catch
         {
@@ -83,9 +66,41 @@ export default class MoveTreeNode
         }
 
         n.fen  = b.fen();
+        n.move = sanMove;
         this.children.push(n); // TODO duplicates?
 
         return true;
+    }
+
+    /**
+     * 
+     * @param {MoveTreeNode} node 
+     * @param {Array<MoveTreeNode} carry
+     */
+    pgnStep(node, carry)
+    {
+        if (node == null)
+            return '';
+        
+        let str = node.move ? node.move+' ' : '';
+        if (carry.length > 1)
+        {
+            str += '( '
+            for (let i = 1; i < carry.length; i++)
+                str += this.pgnStep(carry[i], carry[i].children);
+            str += ') '
+        }
+
+        return str + this.pgnStep(node.children[0], node.children);
+    }
+
+    /**
+     * @returns a pgn representation of the MoveTree
+     */
+    pgn()
+    {
+        let head  = this.getHead();
+        return this.pgnStep(head, head.children) + '*';
     }
 }
 
