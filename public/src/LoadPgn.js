@@ -76,8 +76,18 @@ export function loadPgn(pgn)
     {
         let token = tokens.pop();
 
+        // add comment
+        if (token.indexOf('{') != -1)
+        {
+            cursor.comment = token.match(/(?<=\{)(.*?)(?=\})/g)[0];
+            continue;
+        }
+            
+        // add move
         if (cursor.addMove(token))
             cursor = cursor.children[0];
+        
+        // invalid token
         else
             break;
     }

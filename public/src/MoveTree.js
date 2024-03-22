@@ -5,8 +5,8 @@ export default class MoveTreeNode
     /**
      * A single node in a move tree
      * @param {MoveTreeNode}        parent the parent node to this node
-     * @param {string}      fen the current fen string of the position
-     * @param {string}      move string version of the current chess move
+     * @param {string}              fen the current fen string of the position
+     * @param {string}              move string version of the current chess move
      * @param {Array<MoveTreeNode>} children variations after this move
      */
     constructor(parent, fen, move, children)
@@ -92,7 +92,7 @@ export default class MoveTreeNode
             str += ') '
         }
 
-        return str + this.pgnStep(node.children[0], node.children);
+        return str + (node.comment ? `{ ${node.comment} }` : '') + this.pgnStep(node.children[0], node.children);
     }
 
     /**
