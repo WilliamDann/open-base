@@ -81,7 +81,9 @@ export default class MoveTreeNode
         if (node == null)
             return '';
         
-        let str = node.move ? node.move+' ' : '';
+        let str  = node.move ? node.move+' ' : '';
+        str      = str.replace(/\d{1,}\.\.\.\s/g, '');
+
         if (carry.length > 1)
         {
             str += '( '

@@ -12,6 +12,9 @@ function readHeaders(pgn)
     let raw     = pgn.match(btBrackets);
     let headers = {};
 
+    if (!raw)
+        return headers;
+
     for (let string of raw)
         headers[string.split(' ')[0]] = string.match(btQuotes)[0];
 
@@ -57,16 +60,26 @@ export function loadPgn(pgn)
 
     // tokenize moves
     let tokens = pgn
-        .trim()
-        .replaceAll('\n', ' ')
-        .match(sanMove)
-        .reverse()
+        .trim()                      // remove tailing whitespace
+        .replaceAll('\n', ' ')       // remove newlines
+        .replaceAll(/\d{1,}\./g, '') // remove move number lables
+        .split(' ')
+        .filter(x => x != '');
+
+    if (!tokens)
+        return tree;
+
+    tokens = tokens.reverse()
 
     // add moves to tree
     while (tokens.length > 0)
     {
         let token = tokens.pop();
-        tree.addMove(token);
+
+        if (cursor.addMove(token))
+            cursor = cursor.children[0];
+        else
+            break;
     }
 
     // profit
