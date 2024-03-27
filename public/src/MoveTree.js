@@ -92,7 +92,7 @@ export default class MoveTreeNode
             str += ') '
         }
 
-        return str + (node.comment ? `{ ${node.comment} }` : '') + this.pgnStep(node.children[0], node.children);
+        return str + (node.comment ? `{ ${node.comment} } ` : '') + this.pgnStep(node.children[0], node.children);
     }
 
     /**

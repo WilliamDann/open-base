@@ -1,3 +1,4 @@
+import Chessgame from "./Chessgame.js";
 import MoveTreeNode from "./MoveTree.js";
 
 /**
@@ -44,30 +45,31 @@ function addSpacesToMoves(pgn)
 /**
  * load a PGN file into a MoveTree
  * @param {string} pgn pgn file string
- * @returns {MoveTreeNode?} a move tree of the pgn, or null if an invalid move occored
+ * @returns {Chessgame?} a move tree of the pgn, or null if an invalid move occored
  */
 export function loadPgn(pgn)
 {
     // TODO there can be a StartPosition(?) header in a PGN file that allows a different starting position.
     let tree   = new MoveTreeNode(null, 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1', null, []);
     let cursor = tree;
-
+    
     let headers = readHeaders(pgn);
     pgn         = removeHeaders(pgn);
     pgn         = addSpacesToMoves(pgn);
-
-    let sanMove = /(\d{1,}\.\s\S{1,})|(\S{1,})/g
+    
+    // game info container to return
+    let game   = new Chessgame(tree, headers);
 
     // tokenize moves
     let tokens = pgn
         .trim()                      // remove tailing whitespace
         .replaceAll('\n', ' ')       // remove newlines
         .replaceAll(/\d{1,}\./g, '') // remove move number lables
-        .split(' ')
+        .split(/\s+(?![^{]*})/g)
         .filter(x => x != '');
 
     if (!tokens)
-        return tree;
+        return game;
 
     tokens = tokens.reverse()
 
@@ -93,5 +95,5 @@ export function loadPgn(pgn)
     }
 
     // profit
-    return tree;
+    return game;
 }

@@ -21,8 +21,19 @@
 .moveText
 {
     color: #166534;
-    display: block;
+    display: inline;
     font-weight: bold;
+}
+
+.break
+{
+    display: block;
+}
+
+.commentText
+{
+    display: block;
+    padding-left: 15px;
 }
 
 /* width */

@@ -9,7 +9,7 @@
 </div>
 
 <script type="module">
-    import Editor      from './src/editor.js'
+    import Editor      from './src/PgnEditor.js'
     import { loadPgn } from './src/LoadPgn.js'
 
     let elem = document.querySelector('.editor')
@@ -25,8 +25,9 @@
             return;
         }
 
-        window.moveTree = t;
-        window.position = t;
+        // TODO header information is also returned
+        window.moveTree = t.moveTree;
+        window.position = t.moveTree;
 
         window.dispatchEvent(new Event('boardupdate'))
     });
